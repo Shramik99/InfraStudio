@@ -1,0 +1,110 @@
+<div class="container">
+    <div style="margin-top: 10px;">
+<mat-form-field appearance="fill" style="width: auto;">
+    <mat-label>Select Test</mat-label>
+    <mat-select [(ngModel)]="selectedType" (selectionChange)="changeType()">
+      <mat-option value="UC1">Load Balancing Test</mat-option>
+      <mat-option value="UC2">URL Connectivity Test</mat-option>
+      <mat-option value="UC3">Functional & Perf. Test</mat-option>
+    </mat-select>
+</mat-form-field>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  <!-- Load Balancing Test Columns -->
+    <div *ngIf="selectedType == 'UC1'">
+      <ng-container matColumnDef="sNo">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.sNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="url">
+        <th mat-header-cell *matHeaderCellDef> Url </th>
+        <td mat-cell *matCellDef="let element"> {{element.url}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="result">
+        <th mat-header-cell *matHeaderCellDef> Result </th>
+        <td mat-cell *matCellDef="let element"><button>View</button></td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="reportDate">
+        <th mat-header-cell *matHeaderCellDef>Report Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.preProof}}</td>
+      </ng-container> -->
+    </div>
+
+<!-- URL Connectivity Test Columns -->
+    <div *ngIf="selectedType == 'UC2'">
+      <ng-container matColumnDef="sNo">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.sNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="url">
+        <th mat-header-cell *matHeaderCellDef> URL </th>
+        <td mat-cell *matCellDef="let element"> {{element.url}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="preProof">
+        <th mat-header-cell *matHeaderCellDef> Pre Proof </th>
+        <td mat-cell *matCellDef="let element"> <img [src]="'data:image/jpg;base64,' + element.preProof" width="180" height="120"></td>
+      </ng-container>
+
+      <ng-container matColumnDef="postProof">
+        <th mat-header-cell *matHeaderCellDef> Post Proof </th>
+        <td mat-cell *matCellDef="let element"><img [src]="'data:image/jpg;base64,' + element.postProof" width="180" height="120"></td>
+      </ng-container>
+    </div>
+
+<!-- Share Drive Performance Test Columns -->
+    <div *ngIf="selectedType == 'UC3'">
+      <ng-container matColumnDef="sNo">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.sNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="path">
+        <th mat-header-cell *matHeaderCellDef> Path </th>
+        <td mat-cell *matCellDef="let element"> {{element.path}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="createFilesTime">
+        <th mat-header-cell *matHeaderCellDef> Create Files Time </th>
+        <td mat-cell *matCellDef="let element"> {{element.createFilesTime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="writeFilesTime">
+        <th mat-header-cell *matHeaderCellDef> Write Files Time </th>
+        <td mat-cell *matCellDef="let element"> {{element.writeFilesTime}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="moveFilesTime">
+        <th mat-header-cell *matHeaderCellDef> Move Files Time </th>
+        <td mat-cell *matCellDef="let element">{{element.moveFilesTime}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="deleteFilesTime">
+        <th mat-header-cell *matHeaderCellDef> Delete Files Time</th>
+        <td mat-cell *matCellDef="let element">{{element.deleteFilesTime}}</td>
+      </ng-container>
+    </div>
+
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[3, 5, 10, 20]"
+                   showFirstLastButtons 
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>
+</div>
