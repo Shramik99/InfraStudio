@@ -1,0 +1,76 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+    <div *ngIf="selectedType == 'UC1'"> 
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="sno">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="output">
+        <th mat-header-cell *matHeaderCellDef> Output </th>
+        <td mat-cell *matCellDef="let element"> {{element.output}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="flipped">
+        <th mat-header-cell *matHeaderCellDef> Flipped </th>
+        <td mat-cell *matCellDef="let element"> {{element.flipped}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </div>
+
+    <div *ngIf="selectedType == 'UC3'"> 
+  
+        <!-- Position Column -->
+        <ng-container matColumnDef="sno">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="path">
+          <th mat-header-cell *matHeaderCellDef> Path </th>
+          <td mat-cell *matCellDef="let element"> {{element.path}} </td>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="createFilesTime">
+          <th mat-header-cell *matHeaderCellDef> Create Files Time </th>
+          <td mat-cell *matCellDef="let element"> {{element.createFilesTime}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="writeFilesTime">
+            <th mat-header-cell *matHeaderCellDef> Write Files Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.writeFilesTime}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="moveFilesTime">
+            <th mat-header-cell *matHeaderCellDef> Move Files Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.moveFilesTime}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="deleteFilesTime">
+            <th mat-header-cell *matHeaderCellDef> Delete Files Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.deleteFilesTime}} </td>
+          </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      </div>
+</table>
+
+    
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>

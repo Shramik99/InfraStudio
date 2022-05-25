@@ -24,8 +24,16 @@ export class ApiService {
     return this.http.get("http://localhost:8080/api/LoadBalancingTest");
   }
 
+  getDetailedLoadBalancingReport(uid: number){
+    return this.http.get<number>("http://localhost:8080/api/LoadBalancingReport/uid/"+uid);
+  }
+
   getShareDriveReport(){
-    return this.http.get("http://localhost:8080/api/ShareDriveReport");
+    return this.http.get("http://localhost:8080/api/ShareDriveCReport");
+  }
+
+  getDetailedDriveReport(uid: number){
+    return this.http.get<number>("http://localhost:8080/api/ShareDriveReport/uid/"+uid);
   }
 
   initialiseTest(){

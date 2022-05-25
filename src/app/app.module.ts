@@ -22,6 +22,7 @@ import { TestModuleComponent } from './test-module/test-module.component';
 import { ReportTableComponent } from './report-table/report-table.component';
 import {MatSelectModule} from '@angular/material/select';
 import { DatePipe } from '@angular/common';
+import { ReportDialogComponent } from './report-dialog/report-dialog.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { DatePipe } from '@angular/common';
     TestDialogComponent,
     TestTableComponent,
     TestModuleComponent,
-    ReportTableComponent
+    ReportTableComponent,
+    ReportDialogComponent
   ],
   imports: [
     BrowserModule,

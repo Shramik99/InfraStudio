@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { ReportDialogComponent } from '../report-dialog/report-dialog.component';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -11,18 +13,18 @@ import { ApiService } from '../services/api.service';
 export class ReportTableComponent implements OnInit {
 
   selectedType: string = "UC1";
-  displayedColumns: string[] = ['sNo', 'url', 'result'];
+  displayedColumns: string[] = ['uid', 'url', 'datetime', 'result'];
   dataSource!: MatTableDataSource<any>;
   
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private dialog: MatDialog) {
    }
 
   changeType(){
     console.log(this.selectedType);
     if(this.selectedType == 'UC1'){
-      this.displayedColumns = ['sNo', 'url', 'result']
+      this.displayedColumns = ['uid', 'url', 'datetime', 'result']
       this.getAllLbTest();
     }
     else if(this.selectedType == 'UC2'){
@@ -30,7 +32,8 @@ export class ReportTableComponent implements OnInit {
       this.getAllURLTest();
     }
     else{
-      this.displayedColumns = ['sNo', 'path', 'createFilesTime', 'writeFilesTime', 'moveFilesTime', 'deleteFilesTime']
+      // this.displayedColumns = ['sNo', 'path', 'createFilesTime', 'writeFilesTime', 'moveFilesTime', 'deleteFilesTime']
+      this.displayedColumns = ['uid', 'path', 'datetime', 'result']
       this.getAllShareDriveTest();
     }
   }
@@ -78,6 +81,16 @@ export class ReportTableComponent implements OnInit {
       error:(err)=>{
         alert("Error in fetching the test!");
       }
+    })
+  }
+
+  openDialog(uid:number) {
+    this.dialog.open(ReportDialogComponent, {
+      width:'100%',
+      data:{
+        uid: uid,
+        selectedType:this.selectedType
+      }  
     })
   }
 
